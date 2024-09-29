@@ -34,7 +34,7 @@ class Month {
 
 public class Main {
     public static void main(String[] args) {
-        // Step 1: Create an ArrayList and add 11 months (except August)
+        
         ArrayList<Month> months = new ArrayList<>();
         months.add(new Month("January"));
         months.add(new Month("February"));
@@ -48,19 +48,19 @@ public class Main {
         months.add(new Month("November"));
         months.add(new Month("December"));
 
-        // Step 2: Insert August in the correct position (after July)
+        
         months.add(7, new Month("August"));
 
-        // Step 3: Display the ArrayList to demonstrate the correct order
+        
         System.out.println("ArrayList (Ordered):");
         for (Month month : months) {
             System.out.println(month.getName());
         }
 
-        // Step 4: Convert the ArrayList to a HashSet to ensure no duplicates
+        
         HashSet<Month> uniqueMonths = new HashSet<>(months);
 
-        // Step 5: Iterate through the HashSet using a for loop and an iterator
+        
         System.out.println("\nHashSet (No Duplicates):");
         for (Month month : uniqueMonths) {
             System.out.println(month.getName());
