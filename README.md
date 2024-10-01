@@ -87,8 +87,6 @@ Show people sorted by DNI (9-1).
 Exit.
 The program should list the people as shown below:
 
-markdown
-Copy code
 ___Name___ ____Surnames____ ____DNI____
 Andreu          Ballestero         34835767J
 Miquel          Bayona             48743957B
