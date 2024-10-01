@@ -1,11 +1,11 @@
 import java.util.HashSet;
 import java.util.Objects;
 
-class Restaurant {
+class Restaurant_0 {
     private String name;
     private int rating;
 
-    public Restaurant(String name, int rating) {
+    public Restaurant_0(String name, int rating) {
         this.name = name;
         this.rating = rating;
     }
@@ -18,12 +18,11 @@ class Restaurant {
         return rating;
     }
 
-    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Restaurant that = (Restaurant) o;
+        Restaurant_0 that = (Restaurant_0) o;
         return rating == that.rating && Objects.equals(name, that.name);
     }
 
@@ -38,21 +37,22 @@ class Restaurant {
     }
 }
 
-public class Main {
+class Main_4 {
     public static void main(String[] args) {
-        
-        HashSet<Restaurant> restaurantSet = new HashSet<>();
 
-        
-        restaurantSet.add(new Restaurant("Pizza Palace", 5));
-        restaurantSet.add(new Restaurant("Burger Shack", 4));
-        restaurantSet.add(new Restaurant("Pizza Palace", 3)); // Same name, different rating
-        restaurantSet.add(new Restaurant("Sushi Spot", 5));
-        restaurantSet.add(new Restaurant("Pizza Palace", 5)); // Duplicate, should not be added
+        HashSet<Restaurant_0> restaurantSet = new HashSet<>();
 
-        
-        for (Restaurant restaurant : restaurantSet) {
-            System.out.println(restaurant);
+        // Adding restaurants
+        restaurantSet.add(new Restaurant_0("Pizza Palace", 5));
+        restaurantSet.add(new Restaurant_0("Burger Shack", 4));
+        restaurantSet.add(new Restaurant_0("Pizza Palace", 3)); // Same name, different rating
+        restaurantSet.add(new Restaurant_0("Sushi Spot", 5));
+        restaurantSet.add(new Restaurant_0("Pizza Palace", 5)); // Duplicate, should not be added
+
+        // Corrected for loop
+        for (Restaurant_0 restaurant : restaurantSet) {
+            System.out.println(restaurant); // Printing the restaurant object
         }
     }
 }
+

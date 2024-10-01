@@ -36,7 +36,7 @@ class Person {
     }
 }
 
-public class Main {
+class Main_6 {
     private static List<Person> people = new ArrayList<>();
 
     public static void main(String[] args) {

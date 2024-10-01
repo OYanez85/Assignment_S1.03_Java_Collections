@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+class Main_3 {
     public static void main(String[] args) {
         
         HashMap<String, String> countriesMap = new HashMap<>();
