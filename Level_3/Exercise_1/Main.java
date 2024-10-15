@@ -1,23 +1,18 @@
 package Level_3.Exercise_1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
+import java.net.URL;
+import java.util.*;
 
-public class Main_6 {
+public class Main {
     private static List<Person> people = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        // Load data from CSV file at the beginning
-        loadPeopleFromCSV("people.csv");
+        // Load people from the CSV file hosted online
+        loadPeopleFromCSV("https://raw.githubusercontent.com/OYanez85/Assignment_S1.03_Java_Collections/main/Level_3/Exercise_1/people.csv");
 
         do {
             System.out.println("\nMenu:");
@@ -31,7 +26,7 @@ public class Main_6 {
             System.out.println("0. Exit.");
             System.out.print("Choose an option: ");
             option = scanner.nextInt();
-            scanner.nextLine();  // consume the newline
+            scanner.nextLine(); // Consume newline
 
             switch (option) {
                 case 1:
@@ -66,26 +61,44 @@ public class Main_6 {
         scanner.close();
     }
 
-    // Method to add a new person manually
     private static void enterPerson(Scanner scanner) {
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter surname: ");
-        String surname = scanner.nextLine();
-        System.out.print("Enter DNI: ");
-        String dni = scanner.nextLine();
+        String name, surname, dni;
+        do {
+            System.out.print("Enter name: ");
+            name = scanner.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println("Name cannot be empty.");
+            }
+        } while (name.isEmpty());
 
+        do {
+            System.out.print("Enter surname: ");
+            surname = scanner.nextLine().trim();
+            if (surname.isEmpty()) {
+                System.out.println("Surname cannot be empty.");
+            }
+        } while (surname.isEmpty());
+
+        do {
+            System.out.print("Enter DNI: ");
+            dni = scanner.nextLine().trim();
+            if (!dni.matches("\\d{8}[A-Za-z]")) {
+                System.out.println("Invalid DNI format. It must be 8 digits followed by a letter.");
+            }
+        } while (!dni.matches("\\d{8}[A-Za-z]"));
         people.add(new Person(name, surname, dni));
     }
 
-    // Method to load people from a CSV file
-    private static void loadPeopleFromCSV(String filePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length == 3) {
-                    people.add(new Person(values[0].trim(), values[1].trim(), values[2].trim()));
+    private static void loadPeopleFromCSV(String fileUrl) {
+        try {
+            URL url = new URL(fileUrl);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    if (values.length == 3) {
+                        people.add(new Person(values[0].trim(), values[1].trim(), values[2].trim()));
+                    }
                 }
             }
         } catch (IOException e) {
@@ -93,7 +106,6 @@ public class Main_6 {
         }
     }
 
-    // Sorting methods for people by name, surname, and DNI
     private static void showPeopleSortedByName(boolean ascending) {
         List<Person> sortedList = new ArrayList<>(people);
         sortedList.sort(Comparator.comparing(Person::getName));
@@ -121,9 +133,8 @@ public class Main_6 {
         displayPeople(sortedList);
     }
 
-    // Method to display people
     private static void displayPeople(List<Person> list) {
-        System.out.println("\n___Name___   ____Surname___   __ID__");
+        System.out.printf("\n%-10s %-20s %-10s%n", "Name", "Surname", "ID");
         for (Person person : list) {
             System.out.println(person);
         }

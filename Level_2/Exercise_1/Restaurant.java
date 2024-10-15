@@ -2,11 +2,11 @@ package Level_2.Exercise_1;
 
 import java.util.Objects;
 
-public class Restaurant_0 {
+public class Restaurant {
     private String name;
     private int rating;
 
-    public Restaurant_0(String name, int rating) {
+    public Restaurant(String name, int rating) {
         this.name = name;
         this.rating = rating;
     }
@@ -23,7 +23,7 @@ public class Restaurant_0 {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Restaurant_0 that = (Restaurant_0) o;
+        Restaurant that = (Restaurant) o;
         return rating == that.rating && Objects.equals(name, that.name);
     }
 
@@ -32,7 +32,6 @@ public class Restaurant_0 {
         return Objects.hash(name, rating);
     }
 
-    // Updated toString method for better output formatting
     @Override
     public String toString() {
         return String.format("Restaurant: %-15s | Rating: %d", name, rating);
